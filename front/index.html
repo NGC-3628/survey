@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encuesta Medios de Transporte</title>
+  <link rel="stylesheet" href="/front/styles/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Encuesta: Medios de Transporte</h1>
+  </header>
+
+  <main>
+    <div class="container">
+      <form id="surveyForm">
+        <!-- Pregunta 1 -->
+        <label for="career">1. Selecciona tu carrera:</label>
+        <select id="career" name="career" required>
+          <option value="" disabled selected>Selecciona...</option>
+          <option value="Mecatronica">Mecatrónica</option>
+          <option value="Sistemas computacionales TICS">Sistemas computacionales TICS</option>
+          <option value="Administracion">Administración</option>
+          <option value="Metal mecanica">Metal mecánica</option>
+          <option value="Industrial/Procesos">Industrial/Procesos</option>
+        </select>
+
+        <!-- Pregunta 2 -->
+        <p>2. ¿Cuál es tu medio de transporte principal para llegar a la universidad?</p>
+        <label><input type="radio" name="transporte" value="Carro propio" required> Carro propio</label>
+        <label><input type="radio" name="transporte" value="Motocicleta"> Motocicleta</label>
+        <label><input type="radio" name="transporte" value="Bicicleta"> Bicicleta</label>
+        <label><input type="radio" name="transporte" value="Autobús"> Autobús</label>
+        <label><input type="radio" name="transporte" value="Taxi"> Taxi / aplicación (Uber, Didi, etc.)</label>
+        <label>
+          <input type="radio" name="transporte" value="Otro" id="radioOtro">
+          Otro:
+          <input type="text"
+                 id="inputOtro"
+                 name="otroTransporte"
+                 placeholder="Especificar"
+                 pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s-]{3,30}"
+                 title="Escribe un nombre de transporte (solo letras y espacios)">
+        </label>
+
+        <!-- Pregunta 3 -->
+        <p>3. ¿Con qué frecuencia utilizas ese medio de transporte?</p>
+        <label><input type="radio" name="frecuencia" value="Todos los días" required> Todos los días</label>
+        <label><input type="radio" name="frecuencia" value="La mayoría de los días 3-4"> La mayoría de los días (3 - 4) días</label>
+        <label><input type="radio" name="frecuencia" value="Ocasionalmente 1-2"> Ocasionalmente (1 - 2) días</label>
+
+        <!-- Pregunta 4 -->
+        <p>4. ¿Cuánto gastas en promedio por día para llegar a la UTT?</p>
+        <label><input type="radio" name="gasto" value="0" required> $0</label>
+        <label><input type="radio" name="gasto" value="1-30"> $1–$30</label>
+        <label><input type="radio" name="gasto" value="31-40"> $31–$40</label>
+        <label><input type="radio" name="gasto" value="51+"> $51 o más</label>
+
+        <!-- Pregunta 5 -->
+        <p>5. ¿Cuánto tiempo tardas en llegar a la UTT (aprox.)?</p>
+        <label><input type="radio" name="tiempo" value="Menos de 15 minutos" required> Menos de 15 minutos</label>
+        <label><input type="radio" name="tiempo" value="15-30 minutos"> 15–30 minutos</label>
+        <label><input type="radio" name="tiempo" value="31-60 minutos"> 31–60 minutos</label>
+        <label><input type="radio" name="tiempo" value="Más de 60 minutos"> Más de 60 minutos</label>
+
+        <button type="submit" class="enviar">ENVIAR</button>
+      </form>
+
+      <!-- Pantalla de gracias -->
+      <div class="thanks-screen" id="thanksScreen">
+        <h2>¡Gracias por responder!</h2>
+        <button onclick="resetForm()">Llenar de nuevo</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Isaac Iturralde</p>
+    <p>SAFE DATA AT MONGO<br>
+    4A T N DSM<br>
+    NATALY · MARIANA · TAISHA · ANDREA · ISAAC</p>
+  </footer>
+
+  <script src="/front/scripts/script.js"></script>
+</body>
+</html>
