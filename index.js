@@ -3,7 +3,7 @@ import { initDb as databaseInit } from "./data/database.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import surveyRoutes from "./routes/routes.js";
+import surveyRoutes from "./routes/route.js";
 
 
 const app = express();
