@@ -1,7 +1,5 @@
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { dot } from 'node:test/reporters';
-import { callbackify } from 'node:util';
 
 dotenv.config();
 let database;

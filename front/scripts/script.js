@@ -18,11 +18,16 @@ form.addEventListener('submit', async function (e) {
 
   try {
     //Enviar al backend
-    const res = await fetch('http://localhost:2700/survey', {
+    const API_URL = window.location.hostname === "localhost"
+      ? "http://localhost:2700/survey"
+      : "https://survey-jbkq.onrender.com/survey";
+
+    const res = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
+
 
     if (!res.ok) throw new Error('Error al enviar la encuesta');
 
