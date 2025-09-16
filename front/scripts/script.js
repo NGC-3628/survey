@@ -64,3 +64,6 @@ radiosTransporte.forEach(radio => {
 
 // actualizar año del footer
 document.querySelector("#year").textContent = new Date().getFullYear();
+
+//last modified time
+document.querySelector("#lastmode").textContent = document.lastModified;
