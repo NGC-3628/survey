@@ -4,7 +4,7 @@ import { dot } from 'node:test/reporters';
 import { callbackify } from 'node:util';
 
 dotenv.config();
-let databse;
+let database;
 
 const initDb = (callback) => {
     if(databse) {
