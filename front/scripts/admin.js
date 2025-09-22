@@ -33,7 +33,7 @@ async function getAll() {
 
 function filterByCareer(career) {
   if (!currentData.length) {
-    alert("Primero carga todas las encuestas con 'Ver todas'.");
+    alert("Primero carga todas las encuestas con 'Ver todas '.");
     return;
   }
   const filtered = currentData.filter(s => s.career === career);
@@ -43,22 +43,30 @@ function filterByCareer(career) {
 
 // Renderizar tabla
 function renderTable(data) {
-  const tbody = document.querySelector("#surveyTable tbody");
+  const table = document.getElementById("surveyTable");
+  const tbody = table.querySelector("tbody");
   tbody.innerHTML = "";
-  document.querySelector("#surveyTable").style.display = "table";
-  document.querySelector("#total").innerText = `Total: ${data.length}`;
 
-  data.forEach(survey => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${survey.career}</td>
-      <td>${survey.transporte}</td>
-      <td>${survey.gasto}</td>
-      <td>${survey.tiempo}</td>
+  data.forEach(s => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${s.career}</td>
+      <td>${s.transporte}</td>
+      <td>${s.gasto}</td>
+      <td>${s.tiempo}</td>
+      <td>${s._id}</td>
+      <td>
+        <button onclick="deleteSurvey('${s._id}')">🗑️ Borrar</button>
+        <button onclick="editSurvey('${s._id}')">✏️ Editar</button>
+      </td>
     `;
-    tbody.appendChild(tr);
+    tbody.appendChild(row);
   });
+
+  table.style.display = "table";
+  document.getElementById("total").innerText = `Total: ${data.length}`;
 }
+
 
 // Ver encuesta por ID
 async function getById() {
@@ -70,14 +78,18 @@ async function getById() {
 }
 
 // Borrar encuesta por ID
-async function deleteById() {
-  const id = document.getElementById("surveyId").value;
-  if (!id) return alert("Ingresa un ID");
-  if (!confirm("¿Seguro que deseas borrar esta encuesta?")) return;
-  await fetch(`${backendUrl}/${id}`, { method: "DELETE" });
-  alert("Encuesta eliminada");
-  getAll();
+async function deleteSurvey(id) {
+  if (!confirm(`¿Seguro que quieres borrar la encuesta ${id}?`)) return;
+
+  const res = await fetch(`${backendUrl}/${id}`, { method: "DELETE" });
+  if (res.ok) {
+    alert(`Encuesta ${id} eliminada`);
+    getAll(); // recargar la tabla
+  } else {
+    alert("Error al borrar encuesta");
+  }
 }
+
 
 // Actualizar encuesta por ID
 async function updateById() {
