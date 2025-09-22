@@ -21,12 +21,25 @@ async function getAll() {
 }
 
 // Filtrar por carrera
-async function filterByCareer(career) {
+let currentData = []; // global
+
+async function getAll() {
   const res = await fetch(backendUrl);
   const data = await res.json();
-  const filtered = data.filter(s => s.carrera === career);
+  currentData = data; // guardamos en memoria
+  renderTable(data);
+  document.getElementById("filters").style.display = "block";
+}
+
+function filterByCareer(career) {
+  if (!currentData.length) {
+    alert("Primero carga todas las encuestas con 'Ver todas'.");
+    return;
+  }
+  const filtered = currentData.filter(s => s.career === career);
   renderTable(filtered);
 }
+
 
 // Renderizar tabla
 function renderTable(data) {
