@@ -38,7 +38,7 @@ function renderTable(data) {
   data.forEach(survey => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${survey.carrera}</td>
+      <td>${survey.career}</td>
       <td>${survey.transporte}</td>
       <td>${survey.gasto}</td>
       <td>${survey.tiempo}</td>
