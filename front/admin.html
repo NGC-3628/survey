@@ -14,12 +14,39 @@
 
   <h2>Acciones</h2>
   <button onclick="getAll()">Ver todas las encuestas</button>
-  <input type="text" id="surveyId" placeholder="ID de encuesta">
-  <button onclick="getById()">Ver encuesta por ID</button>
-  <button onclick="deleteById()">Borrar encuesta por ID</button>
-  <button onclick="updateById()">Actualizar encuesta por ID</button>
 
-  <pre id="output"></pre>
+<div id="filters" style="display:none; margin-top:10px;">
+  <h3>Filtrar por carrera:</h3>
+  <button onclick="filterByCareer('Mecatronica')">Mecatrónica</button>
+  <button onclick="filterByCareer('Sistemas computacionales TICS')">Sistemas</button>
+  <button onclick="filterByCareer('Industrial/Procesos')">Industrial</button>
+  <button onclick="filterByCareer('Metal mecanica')">Metal Mecánica</button>
+  <button onclick="filterByCareer('Administracion')">Administración</button>
+</div>
+
+<h3 id="total"></h3>
+
+<table border="1" id="surveyTable" style="width:100%; border-collapse:collapse; margin-top:10px; display:none;">
+  <thead style="background:#eee;">
+    <tr>
+      <th>Carrera</th>
+      <th>Transporte</th>
+      <th>Gasto</th>
+      <th>Tiempo</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+<!-- Fin de la nueva parte -->
+
+<!-- Tus acciones por ID -->
+<br><br>
+<input type="text" id="surveyId" placeholder="ID de encuesta">
+<button onclick="getById()">Ver encuesta por ID</button>
+<button onclick="deleteById()">Borrar encuesta por ID</button>
+<button onclick="updateById()">Actualizar encuesta por ID</button>
+
+<pre id="output"></pre>
 
   <script src="./scripts/admin.js"></script>
 </body>
