@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Administración</title>
+  <link rel="stylesheet" href="../front/styles/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Panel de Administración</h1>
+  </header>
+
+  <main class="container">
+    <div id="notLoggedIn">
+      <p>Debes iniciar sesión para acceder al panel.</p>
+      <a href="https://survey-jbkq.onrender.com/admin/login">
+        <button>🔑 Login con GitHub</button>
+      </a>
+    </div>
+
+    <div id="loggedIn" style="display:none;">
+      <h2>Encuestas registradas</h2>
+      <table border="1" id="surveyTable">
+        <thead>
+          <tr>
+            <th>Carrera</th>
+            <th>Transporte</th>
+            <th>Frecuencia</th>
+            <th>Gasto</th>
+            <th>Tiempo</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <button onclick="logout()">🚪 Cerrar sesión</button>
+    </div>
+  </main>
+
+  <script src="../front/scripts/admin.js"></script>
+</body>
+</html>
