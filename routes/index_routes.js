@@ -17,16 +17,15 @@ router.get("/admin/login", passport.authenticate("github"));
 
 // CALLBACK de GitHub → crea sesión y redirige
 router.get(
-  "/github/callback",
+  "/admin/github/callback",
   passport.authenticate("github", { failureRedirect: "/admin/denied" }),
   (req, res) => {
-    // Guardar datos básicos del usuario en la sesión
     req.session.user = {
       id: req.user.id,
       username: req.user.username,
       displayName: req.user.displayName
     };
-    res.redirect("/admin"); // redirige al panel
+    res.redirect("/admin");
   }
 );
 
