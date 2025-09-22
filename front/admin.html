@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin - Encuestas</title>
+  <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+  <h1>Panel de Administración</h1>
+
+  <div id="userInfo"></div>
+  <button onclick="logout()">Cerrar sesión</button>
+
+  <h2>Acciones</h2>
+  <button onclick="getAll()">Ver todas las encuestas</button>
+  <input type="text" id="surveyId" placeholder="ID de encuesta">
+  <button onclick="getById()">Ver encuesta por ID</button>
+  <button onclick="deleteById()">Borrar encuesta por ID</button>
+  <button onclick="updateById()">Actualizar encuesta por ID</button>
+
+  <pre id="output"></pre>
+
+  <script src="./scripts/admin.js"></script>
+</body>
+</html>

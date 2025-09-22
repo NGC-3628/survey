@@ -5,6 +5,8 @@ import { Strategy as GitHubStrategy } from "passport-github2";
 import { initDb as databaseInit } from "./data/database.js";
 import dotenv from "dotenv";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
 // Routers
 import surveyRoutes from "./routes/route.js";       // CRUD encuestas
@@ -45,6 +47,14 @@ passport.use(
     }
   )
 );
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+app.use(express.static("front"));
+
+app.get("/admin", (req, res) => {
+  res.sendFile(path.join(__dirname, "front", "admin.html"));
+});
 
 // Serialización de sesión
 passport.serializeUser((user, done) => {

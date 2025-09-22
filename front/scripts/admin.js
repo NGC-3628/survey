@@ -1,45 +1,49 @@
-async function fetchSurveys() {
-    try {
-      const res = await fetch("https://survey-jbkq.onrender.com/survey", {
-        credentials: "include" // mantiene cookie de sesión
-      });
-  
-      if (res.status === 401) {
-        // no autenticado
-        document.getElementById("notLoggedIn").style.display = "block";
-        document.getElementById("loggedIn").style.display = "none";
-        return;
-      }
-  
-      const data = await res.json();
-  
-      document.getElementById("notLoggedIn").style.display = "none";
-      document.getElementById("loggedIn").style.display = "block";
-  
-      const tbody = document.querySelector("#surveyTable tbody");
-      tbody.innerHTML = "";
-  
-      data.forEach(s => {
-        const row = `<tr>
-          <td>${s.career}</td>
-          <td>${s.transporte}</td>
-          <td>${s.frecuencia}</td>
-          <td>${s.gasto}</td>
-          <td>${s.tiempo}</td>
-          <td>${new Date(s.createdAt).toLocaleString()}</td>
-        </tr>`;
-        tbody.innerHTML += row;
-      });
-    } catch (err) {
-      console.error(err);
-      alert("Error al cargar encuestas");
-    }
-  }
-  
-  function logout() {
-    window.location.href = "https://survey-jbkq.onrender.com/admin/logout";
-  }
-  
-  // Llamar al cargar
-  fetchSurveys();
-  
+const API_URL = "https://survey-jbkq.onrender.com/survey";
+
+// Mostrar usuario (puedes traerlo desde backend en el futuro)
+document.getElementById("userInfo").innerText = "Sesión activa";
+
+// Funciones
+async function getAll() {
+  const res = await fetch(API_URL);
+  const data = await res.json();
+  document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+}
+
+async function getById() {
+  const id = document.getElementById("surveyId").value;
+  const res = await fetch(`${API_URL}/${id}`);
+  const data = await res.json();
+  document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+}
+
+async function deleteById() {
+  const id = document.getElementById("surveyId").value;
+  const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+  const data = await res.json();
+  document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+}
+
+async function updateById() {
+  const id = document.getElementById("surveyId").value;
+  const body = {
+    career: "Administración",
+    transporte: "Taxi",
+    frecuencia: "Ocasionalmente 1-2",
+    gasto: "31-40",
+    tiempo: "15-30 minutos"
+  };
+
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+
+  const data = await res.json();
+  document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+}
+
+function logout() {
+  window.location.href = "/admin/logout";
+}
